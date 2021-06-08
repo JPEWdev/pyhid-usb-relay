@@ -52,3 +52,17 @@ effect
 access the board. If this is not what you want, you should change the udev
 rules.
 
+# Fixing Serial Numbers
+
+The relays that this tool is designed to control have a quirk that they all
+report the same USB Vendor, Product, and Serial Number (The serial number used
+by this code is retrieved by the HID API). This can make it hard to distinguish
+between multiple relays attached to the same device using udev rules.
+
+The `pyhid-usb-relay` tool can be used to help resolve this by using the
+`get-serial` subcommand, which will fetch the HID serial number from the device
+with a udev rule that looks like:
+
+```
+SUBSYSTEM=="usb", ATTR{idVendor}=="16c0", ATTR{idProduct}=="05df", ACTION=="add", PROGRAM="/usr/local/bin/pyhid-usb-relay get-serial '%E{BUSNUM}' '%E{DEVNUM}'", ENV{ID_SERIAL}:="%c"
+```
