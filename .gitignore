@@ -1,2 +1,6 @@
 Pipfile.lock
 *~
+dist/
+build/
+venv/
+*.egg-info

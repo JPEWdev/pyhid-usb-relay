@@ -4,22 +4,27 @@ This utility is a Python version of [usb-relay-hid](https://github.com/pavel-a/u
 
 # Getting Started
 
-This project uses [pipenv](https://github.com/pypa/pipenv) to make dependency
-management easy. You can either manually install all the dependencies listed in
-the [Pipfile](./Pipfile), or start a shell that automatically has all the
-correct dependencies with:
+Setup a python virtual environment and install requirements:
 
 ```shell
-pipenv shell
+python3 -m venv venv
+. venv/bin/activate
+pip install -r requirements.txt
 ```
 
-The `relay.py` command is pretty much the same as the `hidusb-relay-cmd` from
-the `usb-relay-hid` project, and aims to be feature compatible. Additional
-commands are implemented, and the best way to discover what options are
-available is to run
+The module can be installed with:
 
 ```shell
-./relay.py --help
+./setup.py install
+```
+
+The provided `pyusb-hid-relay` command is pretty much the same as the
+`hidusb-relay-cmd` from the `usb-relay-hid` project, and aims to be feature
+compatible. Additional commands are implemented, and the best way to discover
+what options are available is to run:
+
+```shell
+pyusb-hid-relay --help
 ```
 
 # Configuration
