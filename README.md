@@ -18,13 +18,13 @@ The module can be installed with:
 ./setup.py install
 ```
 
-The provided `pyusb-hid-relay` command is pretty much the same as the
+The provided `pyhid-usb-relay` command is pretty much the same as the
 `hidusb-relay-cmd` from the `usb-relay-hid` project, and aims to be feature
 compatible. Additional commands are implemented, and the best way to discover
 what options are available is to run:
 
 ```shell
-pyusb-hid-relay --help
+pyhid-usb-relay --help
 ```
 
 # Configuration
