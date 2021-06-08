@@ -153,7 +153,7 @@ class DeviceNotFoundError(Exception):
     pass
 
 
-def find(find_all=False, serial=None):
+def find(find_all=False, serial=None, bus=None, address=None):
     class match_relay(object):
         def __call__(self, device):
             manufacturer = usb.util.get_string(device, device.iManufacturer)
@@ -168,6 +168,12 @@ def find(find_all=False, serial=None):
                 c = Controller(device)
                 if c.serial != serial:
                     return False
+
+            if bus is not None and device.bus != bus:
+                return False
+
+            if address is not None and device.address != address:
+                return False
 
             return True
 
@@ -243,6 +249,13 @@ def main():
         device = find(serial=args.serial)
         print(onoff(device[args.relay]))
 
+    def relay_get_serial(args):
+        try:
+            device = find(bus=args.bus, address=args.address)
+            print(device.serial)
+        except DeviceNotFoundError:
+            return 1
+
     import argparse
 
     parser = argparse.ArgumentParser(description="USB HID Relay control")
@@ -292,6 +305,11 @@ def main():
     )
     get_parser.add_argument("--serial", help="Control board with given serial ID")
     get_parser.set_defaults(func=relay_get)
+
+    get_serial_parser = subparser.add_parser("get-serial")
+    get_serial_parser.add_argument("bus", type=int, help="Device USB bus number")
+    get_serial_parser.add_argument("address", type=int, help="Device USB address")
+    get_serial_parser.set_defaults(func=relay_get_serial)
 
     args = parser.parse_args()
     try:
