@@ -54,9 +54,28 @@ class Controller(object):
             value = self.aliases[relay].get(name, value)
         return value
 
+    def set_serial(self, new_serial):
+        buf = array.array("B")
+        buf.append(0xFA)
+        serial = new_serial.encode("utf-8")
+        for i in range(5):
+            if i < len(serial):
+                buf.append(serial[i])
+            else:
+                buf.append(0x00)
+        buf.append(0x00)
+        buf.append(0x00)
+        self._set_hid_report(MAIN_REPORT, buf)
+
+        self._update_status()
+
+
     def _update_status(self):
         data = self._get_hid_report(MAIN_REPORT, 8)
-        self.serial = data[0:5].tobytes().decode("utf-8")
+        try:
+            self.serial = data[0:5].tobytes().decode("utf-8")
+        except UnicodeDecodeError:
+            self.serial = "".join("%02x" % b for b in data[0:5])
         self.state = data[7]
 
     def _name_to_number(self, relay):

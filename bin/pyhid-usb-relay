@@ -71,6 +71,18 @@ def main():
         except DeviceNotFoundError:
             return 1
 
+    def relay_set_serial(args):
+        try:
+            if args.bus:
+                device = find(bus=args.bus[0], address=args.bus[1])
+            else:
+                device = find(serial=args.serial)
+
+            device.set_serial(args.new_serial)
+
+        except DeviceNotFoundError:
+            return 1
+
     parser = argparse.ArgumentParser(description="USB HID Relay control")
 
     subparser = parser.add_subparsers(title="Subcommands", dest="cmd")
@@ -126,6 +138,15 @@ def main():
     get_serial_parser.add_argument("bus", type=int, help="Device USB bus number")
     get_serial_parser.add_argument("address", type=int, help="Device USB address")
     get_serial_parser.set_defaults(func=relay_get_serial)
+
+    set_serial_parser = subparser.add_parser(
+        "set-serial", help="Set device serial number"
+    )
+    group = set_serial_parser.add_mutually_exclusive_group(required=True)
+    group.add_argument("--bus", nargs=2, metavar=("BUS", "ADDRESS"), type=int, help="Device USB bus number and address")
+    group.add_argument("--serial", help="Control board with given serial ID")
+    set_serial_parser.add_argument("new_serial", help="New serial number")
+    set_serial_parser.set_defaults(func=relay_set_serial)
 
     args = parser.parse_args()
     try:
