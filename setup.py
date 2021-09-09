@@ -10,7 +10,7 @@ with open("README.md", "r", encoding="utf-8") as f:
 
 setuptools.setup(
     name="pyhid-usb-relay",
-    version="0.0.1",
+    version="0.1.0",
     author="Joshua Watt",
     author_email="JPEWhacker@gmail.com",
     description="A tool for controlling USB HID relays",
