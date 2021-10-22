@@ -23,8 +23,25 @@ The provided `pyhid-usb-relay` command is pretty much the same as the
 compatible. Additional commands are implemented, and the best way to discover
 what options are available is to run:
 
+
+## Standalone app outside of python
 ```shell
 pyhid-usb-relay --help
+```
+
+## Inside a python app/script
+```
+import pyhid_usb_relay
+
+relay = pyhid_usb_relay.find()
+
+print(relay.state)
+print("Toggeling relay")
+
+relay.toggle_state(1)
+
+print(relay.state)
+
 ```
 
 # Configuration
