@@ -46,7 +46,57 @@ print(relay.state)
 
 # Configuration
 
-Coming soon
+Relay configuration is read from the file
+`$XDG_CONFIG_HOME/usb-hid-relay/config.yaml` (usually
+`~/.config/usb-hid-relay/config.yaml`). This YAML file should contain a top
+level dictionary key for each relay serial number to be configured, like so:
+
+```yaml
+5291D:
+  defaults:
+    ...
+  aliases:
+    ...
+```
+
+The following properties may be defined in the `default` section and apply to
+all relays on the board:
+
+`invert` - A boolean that indicates if the relay logic should be inverted
+`pulse-time` - A floating point number of seconds the relay should remain in
+the opposite state when `pyhid-usb-relay toggle --pulse` is called
+
+Aliases are created by adding a new key under `aliases` with a `relay` property
+indicating which relay number the alias controls. For example the following
+config creates an alias called `foo` that may be used in place of relay number
+2 in the API:
+
+```yaml
+5219D:
+  aliases:
+    foo:
+      relay: 2
+```
+
+Aliases may also define any of the properties listed in `defaults`, in which
+case they only apply when the specific alias is used. Note that these
+properties apply to the _alias_ not the relay number. Using a relay number in
+the API will only apply the defaults
+
+An example configuration is show here:
+
+```yaml
+# Define properties for relay board with serial 5291D
+5291D:
+  defaults:
+    invert: true    # Invert all relays by default
+    pulse-time: 5.0 # Default pulse time is 5 seconds for this board
+  aliases:
+    foo:                # Create an alias called "foo"
+      relay: 1          # This alias controls relay 1
+      invert: false     # Don't invert this alias (overrides the default)
+      pulse-time: 1.0   # Override default pulse-time for this alias
+```
 
 # Permissions
 
