@@ -62,8 +62,8 @@ level dictionary key for each relay serial number to be configured, like so:
 The following properties may be defined in the `default` section and apply to
 all relays on the board:
 
-`invert` - A boolean that indicates if the relay logic should be inverted
-`pulse-time` - A floating point number of seconds the relay should remain in
+* `invert` - A boolean that indicates if the relay logic should be inverted
+* `pulse-time` - A floating point number of seconds the relay should remain in
 the opposite state when `pyhid-usb-relay toggle --pulse` is called
 
 Aliases are created by adding a new key under `aliases` with a `relay` property
