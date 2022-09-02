@@ -143,7 +143,13 @@ def main():
         "set-serial", help="Set device serial number"
     )
     group = set_serial_parser.add_mutually_exclusive_group(required=True)
-    group.add_argument("--bus", nargs=2, metavar=("BUS", "ADDRESS"), type=int, help="Device USB bus number and address")
+    group.add_argument(
+        "--bus",
+        nargs=2,
+        metavar=("BUS", "ADDRESS"),
+        type=int,
+        help="Device USB bus number and address",
+    )
     group.add_argument("--serial", help="Control board with given serial ID")
     set_serial_parser.add_argument("new_serial", help="New serial number")
     set_serial_parser.set_defaults(func=relay_set_serial)
@@ -155,7 +161,3 @@ def main():
         sys.stderr.write(str(e))
         sys.stderr.write("\n")
         return 1
-
-
-if __name__ == "__main__":
-    sys.exit(main())

@@ -2,27 +2,31 @@ Python Utility for controlling HID USB Relays
 
 This utility is a Python version of [usb-relay-hid](https://github.com/pavel-a/usb-relay-hid)
 
-# Getting Started
+# Installation
 
-Setup a python virtual environment and install requirements:
-
-```shell
-python3 -m venv venv
-. venv/bin/activate
-pip install -r requirements.txt
+The latest version can be installed using pip:
+```
+python3 -m pip install pyhid-usb-relay
 ```
 
-The module can be installed with:
+## Manual Installation
 
-```shell
-./setup.py install
+The library can be manually installed using [poetry](https://python-poetry.org/):
+```
+poetry install
 ```
 
-The provided `pyhid-usb-relay` command is pretty much the same as the
-`hidusb-relay-cmd` from the `usb-relay-hid` project, and aims to be feature
-compatible. Additional commands are implemented, and the best way to discover
-what options are available is to run:
+From here, you can either run the `pyhid-usb-relay` command with:
+```
+poetry run pyhid-usb-relay
+```
 
+If you want to build a wheel for installation, run
+```
+poetry build
+```
+
+# Usage
 
 ## Standalone app outside of python
 ```shell
