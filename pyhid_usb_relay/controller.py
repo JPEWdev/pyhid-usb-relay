@@ -69,11 +69,10 @@ class Controller(object):
 
         self._update_status()
 
-
     def _update_status(self):
         data = self._get_hid_report(MAIN_REPORT, 8)
         try:
-            self.serial = data[0:5].tobytes().decode("utf-8")
+            self.serial = data[0:5].tobytes().rstrip(b"\x00").decode("utf-8")
         except UnicodeDecodeError:
             self.serial = "".join("%02x" % b for b in data[0:5])
         self.state = data[7]
