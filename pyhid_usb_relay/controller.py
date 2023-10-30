@@ -61,10 +61,6 @@ class Controller(object):
         for i in range(5):
             if i < len(serial):
                 buf.append(serial[i])
-            else:
-                buf.append(0x00)
-        buf.append(0x00)
-        buf.append(0x00)
         self._set_hid_report(MAIN_REPORT, buf)
 
         self._update_status()
@@ -151,6 +147,10 @@ class Controller(object):
         )
 
     def _set_hid_report(self, report, data):
+        data = data[:]
+        while len(data) < 8:
+            data.append(0x00)
+
         return self.device.ctrl_transfer(
             USB_TYPE_CLASS | USB_RECIP_DEVICE | USB_ENDPOINT_OUT,
             SET_REPORT,
