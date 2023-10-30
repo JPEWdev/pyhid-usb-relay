@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "pyhid-usb-relay"
-version = "0.1.1"
+version = "1.0.0"
 description = "A tool for controlling USB HID relays"
 authors = ["Joshua Watt <JPEWhacker@gmail.com>"]
 license = "MIT"
