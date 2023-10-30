@@ -12,10 +12,11 @@ classifiers = [
 ]
 
 [tool.poetry.dependencies]
-python = "^3.6"
+python = ">=3.7.0,<4.0"
 xdg = "^5.1.1"
 pyusb = "^1.2.1"
 PyYAML = "^6.0"
+libusb = {version = "^1.0.26b5", markers = 'sys_platform == "win32"'}
 
 [tool.poetry.dev-dependencies]
 
