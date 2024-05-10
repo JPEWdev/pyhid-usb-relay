@@ -31,7 +31,8 @@ dependencies = [
 [project.optional-dependencies]
 dev = [
     "flake8",
-    "black"
+    "black",
+    "pytest >= 7.4",
 ]
 
 [project.urls]
@@ -43,7 +44,7 @@ Issues = "https://github.com/JPEWdev/pyhid-usb-relay/issues"
 pyhid-usb-relay = "pyhid_usb_relay.main:main"
 
 [tool.hatch.version]
-path = "pyhid_usb_relay/version.py"
+path = "src/pyhid_usb_relay/version.py"
 
 [build-system]
 requires = ["hatchling"]
