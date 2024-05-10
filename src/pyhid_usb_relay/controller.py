@@ -23,6 +23,10 @@ def xor(a, b):
     return bool(a) != bool(b)
 
 
+def bcd_to_int(b):
+    return (b & 0x0F) + ((b & 0xF0) >> 4) * 10
+
+
 class Controller(object):
     def __init__(self, device, timeout=5000):
         self.device = device
@@ -47,6 +51,12 @@ class Controller(object):
 
         except FileNotFoundError:
             pass
+
+    @property
+    def version(self):
+        major = bcd_to_int(self.device.bcdDevice >> 8)
+        minor = bcd_to_int(self.device.bcdDevice & 0xFF)
+        return major, minor
 
     def get_property(self, relay, name, default=None):
         value = self.defaults.get(name, default)

@@ -17,7 +17,10 @@ def main():
         return "off"
 
     def print_status(d):
-        print("Board ID=[%s] State: %02x" % (d.serial, d.state))
+        major, minor = d.version
+        print(
+            "Board ID=[%s] ver %d.%d, State: %02x" % (d.serial, major, minor, d.state)
+        )
 
     def pulse_sleep(d, relay):
         time.sleep(d.get_property(relay, "pulse-time", 1.0))
