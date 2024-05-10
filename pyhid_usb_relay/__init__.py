@@ -2,6 +2,6 @@
 #
 # SPDX-License-Identifier: MIT
 
-from .controller import Controller
-from .exceptions import DeviceNotFoundError
-from .find import find
+from .controller import Controller  # noqa: F401
+from .exceptions import DeviceNotFoundError  # noqa: F401
+from .find import find  # noqa: F401

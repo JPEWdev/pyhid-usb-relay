@@ -9,23 +9,6 @@ The latest version can be installed using pip:
 python3 -m pip install pyhid-usb-relay
 ```
 
-## Manual Installation
-
-The library can be manually installed using [poetry](https://python-poetry.org/):
-```
-poetry install
-```
-
-From here, you can either run the `pyhid-usb-relay` command with:
-```
-poetry run pyhid-usb-relay
-```
-
-If you want to build a wheel for installation, run
-```
-poetry build
-```
-
 # Usage
 
 ## Standalone app outside of python
@@ -136,4 +119,16 @@ with a udev rule that looks like:
 
 ```
 SUBSYSTEM=="usb", ATTR{idVendor}=="16c0", ATTR{idProduct}=="05df", ACTION=="add", PROGRAM="/usr/local/bin/pyhid-usb-relay get-serial '%E{BUSNUM}' '%E{DEVNUM}'", ENV{ID_SERIAL}:="%c"
+```
+
+# Development
+
+Development of `pyhid-usb-relay` can be done inside of a virtual environment.
+To get started, create a virtual environment and then install the project in
+editable mode:
+
+```shell
+python3 -m venv .venv
+. .venv/bin/activate
+pip install -e ".[dev]"
 ```

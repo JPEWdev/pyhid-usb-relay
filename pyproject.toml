@@ -1,28 +1,50 @@
-[tool.poetry]
+[project]
 name = "pyhid-usb-relay"
-version = "1.0.1"
+dynamic = ["version"]
 description = "A tool for controlling USB HID relays"
-authors = ["Joshua Watt <JPEWhacker@gmail.com>"]
-license = "MIT"
+authors = [
+    {name="Joshua Watt", email="JPEWhacker@gmail.com"},
+]
+maintainers = [
+    {name="Joshua Watt", email="JPEWhacker@gmail.com"},
+]
+license = {file = "COPYING"}
 readme = "README.md"
-homepage = "https://github.com/JPEWdev/pyhid-usb-relay"
-repository = "https://github.com/JPEWdev/pyhid-usb-relay"
 classifiers = [
     "Operating System :: OS Independent",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.8",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+]
+required-python = ">= 3.8"
+dependencies = [
+    "xdg>=5.1.1",
+    "pyusb>=1.2.1",
+    "PyYAML>=6.0",
+    "libusb>=1.0.26b5; sys_platform == 'win32'",
 ]
 
-[tool.poetry.dependencies]
-python = ">=3.8.0,<4.0"
-xdg = "^5.1.1"
-pyusb = "^1.2.1"
-PyYAML = "^6.0"
-libusb = {version = "^1.0.26b5", markers = 'sys_platform == "win32"'}
+[project.optional-dependencies]
+dev = [
+    "flake8",
+    "black"
+]
 
-[tool.poetry.dev-dependencies]
+[project.urls]
+Homepage = "https://github.com/JPEWdev/pyhid-usb-relay"
+Repository = "https://github.com/JPEWdev/pyhid-usb-relay.git"
+Issues = "https://github.com/JPEWdev/pyhid-usb-relay/issues"
 
-[tool.poetry.scripts]
+[project.scripts]
 pyhid-usb-relay = "pyhid_usb_relay.main:main"
 
+[tool.hatch.version]
+path = "pyhid_usb_relay/version.py"
+
 [build-system]
-requires = ["poetry-core>=1.0.0"]
-build-backend = "poetry.core.masonry.api"
+requires = ["hatchling"]
+build-backend = "hatchling.build"
