@@ -7,7 +7,7 @@
 import argparse
 import sys
 import time
-from . import find, DeviceNotFoundError
+from . import find, DeviceNotFoundError, VERSION
 
 
 def main():
@@ -84,6 +84,7 @@ def main():
             return 1
 
     parser = argparse.ArgumentParser(description="USB HID Relay control")
+    parser.add_argument("--version", "-V", action="version", version=VERSION)
 
     subparser = parser.add_subparsers(title="Subcommands", dest="cmd")
     subparser.required = True
