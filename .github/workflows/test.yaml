@@ -32,10 +32,10 @@ jobs:
       - name: Install package
         run: |
           pip install -e .[dev]
-      #- name: Run tests
-      #  run: |
-      #    pytest -v
-      #
+      - name: Run tests
+        run: |
+          pytest -v
+
   lint:
     runs-on: ubuntu-latest
     steps:
