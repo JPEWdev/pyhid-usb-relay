@@ -3,5 +3,6 @@ Pipfile.lock
 dist/
 build/
 venv/
+.venv/
 *.egg-info
 */__pycache__/*

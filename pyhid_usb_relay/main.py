@@ -7,7 +7,7 @@
 import argparse
 import sys
 import time
-from pyhid_usb_relay import find, DeviceNotFoundError
+from . import find, DeviceNotFoundError
 
 
 def main():
