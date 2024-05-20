@@ -17,7 +17,7 @@ pyhid-usb-relay --help
 ```
 
 ## Inside a python app/script
-```
+```python
 import pyhid_usb_relay
 
 relay = pyhid_usb_relay.find()
@@ -27,6 +27,7 @@ print("Toggeling relay")
 
 relay.toggle_state(1)
 
+print(relay.serial)
 print(relay.state)
 
 ```
