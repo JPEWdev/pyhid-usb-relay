@@ -24,7 +24,7 @@ def _get_backend():
 
     # Manually find the libusb DLL and create a backend using it. I don't know
     # why Python can't find this on its own
-    libpath = next(pathlib.Path(libusb.__file__).parent.rglob("x64/libusb-1.0.dll"))
+    libpath = next(pathlib.Path(libusb.__file__).parent.rglob("x*64/libusb-1.0.dll"))
     return usb.backend.libusb1.get_backend(find_library=lambda x: str(libpath))
 
 
