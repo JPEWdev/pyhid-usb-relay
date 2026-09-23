@@ -3,10 +3,9 @@
 # SPDX-License-Identifier: MIT
 
 import array
-import os
 import usb.core
 import usb.util
-import xdg
+import xdg_base_dirs
 import yaml
 
 USB_TYPE_CLASS = 0x20
@@ -40,9 +39,10 @@ class Controller(object):
         self.defaults = {}
 
         try:
-            with open(
-                os.path.join(xdg.XDG_CONFIG_HOME, "usb-hid-relay", "config.yaml"), "r"
-            ) as f:
+            config_path = (
+                xdg_base_dirs.xdg_config_home() / "usb-hid-relay" / "config.yaml"
+            )
+            with config_path.open("r") as f:
                 config = yaml.load(f, Loader=yaml.Loader)
 
             if self.serial in config:

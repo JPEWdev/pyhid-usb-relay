@@ -20,9 +20,9 @@ classifiers = [
     "Programming Language :: Python :: 3.11",
     "Programming Language :: Python :: 3.12",
 ]
-required-python = ">= 3.8"
+required-python = ">= 3.10"
 dependencies = [
-    "xdg>=5.1.1",
+    "xdg-base-dirs>=6.0.3",
     "pyusb>=1.2.1",
     "PyYAML>=6.0",
     "libusb>=1.0.26b5; sys_platform == 'win32'",
